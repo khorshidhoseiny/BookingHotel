@@ -15,7 +15,6 @@ function LocationList() {
           return (
             <div className="locationItem" key={item.id}>
               <img src={item.thumbnail_url} />
-
               <div className="locationItemDesc">
                 <p className="location">{item.smart_location}</p>
                 <p className="name">{item.name}</p>

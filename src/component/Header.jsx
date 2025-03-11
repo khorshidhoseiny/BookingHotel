@@ -95,9 +95,11 @@ function Header() {
               ranges={date}
               onChange={(item) => setDate([item.selection])}
               className="date"
+              minDate={new Date()}
+              moveRangeOnFirstSelection={true}
             />
           )}
-          <span className="seperator" />
+          <span className="seperator"></span>
         </div>
         <div className="headerSearchItem">
           <div

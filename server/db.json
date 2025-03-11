@@ -1325,15 +1325,6 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abalessa",
-      "country": "Algeria",
-      "countryCode": "DZ",
-      "latitude": "23.18455079512732",
-      "longitude": "3.795523257510883",
-      "host_location": "Abalessa Algeria",
-      "id": 1
-    },
-    {
       "cityName": "Mahidasht",
       "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
@@ -1361,15 +1352,6 @@
       "id": 8
     },
     {
-      "cityName": "Ahvaz",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "31.330206465415362",
-      "longitude": "48.650831733610076",
-      "host_location": "Ahvaz Iran (Islamic Republic of)",
-      "id": 9
-    },
-    {
       "cityName": "Shushtar",
       "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
@@ -1386,6 +1368,15 @@
       "longitude": "46.52073420910408",
       "host_location": "Eslamabad-e Gharb Iran (Islamic Republic of)",
       "id": 12
+    },
+    {
+      "cityName": "Ahvaz",
+      "country": "Iran (Islamic Republic of)",
+      "countryCode": "IR",
+      "latitude": "31.27476380639841",
+      "longitude": "48.64368438720704",
+      "host_location": "Ahvaz Iran (Islamic Republic of)",
+      "id": 13
     }
   ]
 }

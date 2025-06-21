@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./component/Header";
 import LocationList from "./component/LocationList";
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./component/AppLayout";
+import AppLayout from "./component/HotelLayout";
 import Hotels from "./component/Hotels/Hotels";
 import HotelsProvider from "./component/context/HotelsProvider";
 import SingleHotel from "./component/SIngleHotel/SingleHotel";
@@ -15,6 +15,7 @@ import AddNewBookmark from "./component/AddNewBookmark/AddNewBookmark";
 import ProtectedRoute from "./component/ProtectedRoute/ProtectedRoute";
 import Login from "./component/Login/Login";
 import AuthProvider from "./component/context/AuthProvider";
+import HotelLayout from "./component/HotelLayout";
 function App() {
   return (
     <BookmarkProvider>
@@ -25,7 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LocationList />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/hotels" element={<AppLayout />}>
+            <Route path="/hotels" element={<HotelLayout />}>
               <Route index element={<Hotels />} />
               <Route path=":id" element={<SingleHotel />} />
             </Route>

@@ -8,7 +8,9 @@ function Hotels() {
   if (isLoading) <Loader />;
   return (
     <div className="searchList">
-      <h2>Search Result ({Hotels.length})</h2>
+      <h2>
+        نتیجه ی جستجو (<span>{Hotels.length} هتل یافت شد</span>)
+      </h2>
       {Hotels.map((item) => {
         return (
           <Link

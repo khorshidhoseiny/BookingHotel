@@ -1,7 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { MdLocationOn, MdLogout } from "react-icons/md";
+import { FaBookmark, FaFilter, FaRegBookmark, FaUser } from "react-icons/fa6";
+import { IoIosLogOut, IoLogoUsd, IoMdLogIn, IoMdPeople } from "react-icons/io";
+import { MdChildCare } from "react-icons/md";
+import {
+  IoBed,
+  IoLogOut,
+  IoLogOutOutline,
+  IoLogOutSharp,
+} from "react-icons/io5";
 import {
   HiCalendar,
+  HiLogin,
   HiLogout,
   HiMinus,
   HiPlus,
@@ -64,10 +74,25 @@ function Header() {
       search: encodedParams.toString(),
     });
   };
-
+  const optionDate = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
   return (
     <div className="header">
-      <NavLink to="/bookmarks">Bookmark</NavLink>
+      <NavLink to="/bookmarks" className="bookmarkLink">
+        {({ isActive }) => (
+          <span className="nevigateContent">
+            {isActive ? (
+              <FaBookmark className="headerIcon" />
+            ) : (
+              <FaRegBookmark className="headerIcon" />
+            )}
+            <span className="bookmarkLink_text">منتخب ها</span>
+          </span>
+        )}
+      </NavLink>
       <div className="headerSearch">
         <div className="headerSearchItem">
           <MdLocationOn className="headerIcon locationIcon" />
@@ -77,48 +102,88 @@ function Header() {
             type="text"
             id="destination"
             name="destination"
-            placeholder="where to go ?"
+            placeholder="کجا میخوای بری ؟"
             className="headerSearchInput"
           />
           <span className="seperator" />
         </div>
-        <div className="headerSearchItem" style={{ cursor: "pointer" }}>
-          <HiCalendar className="headerIcon dateIcon" />
-          <div onClick={() => setOpenDate(!openDate)} className="dateDropDown">
-            {`${format(date[0].startDate, "yyyy/mm/dd")} to ${format(
-              date[0].endDate,
-              "MM/dd/yyyy"
-            )}`}
-          </div>
-          {openDate && (
-            <DateRange
-              ranges={date}
-              onChange={(item) => setDate([item.selection])}
-              className="date"
-              minDate={new Date()}
-              moveRangeOnFirstSelection={true}
-            />
-          )}
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
+
+        <div className="filterSearchOptions">
           <div
-            id="optionDropDown"
+            onClick={() => setOpenDate(!openDate)}
+            className="headerSearchItem"
             style={{ cursor: "pointer" }}
-            onClick={() => setIsOpen(!isOpen)}
           >
-            {options.adult} adult . {options.children} children . {options.room}{" "}
-            room
+            <div className="dateOptionIcon">
+              <HiCalendar className="headerIcon dateIcon" />
+              <span>انتخاب تاریخ</span>
+            </div>
+            <div className="dateDropDown">
+              <span className="dateText">
+                {date[0].startDate.toLocaleDateString("fa-IR", optionDate)}
+              </span>
+              <span className="dateText" style={{ margin: "0 0.5rem" }}>
+                —
+              </span>
+              <span className="dateText">
+                {date[0].endDate.toLocaleDateString("fa-IR", optionDate)}
+              </span>
+            </div>
+            {openDate && (
+              <DateRange
+                ranges={date}
+                onChange={(item) => setDate([item.selection])}
+                className="date"
+                minDate={new Date()}
+                moveRangeOnFirstSelection={true}
+              />
+            )}
           </div>
-          {isOpen && (
-            <GuestOptionList
-              setIsOpen={setIsOpen}
-              options={options}
-              handleOptions={handleOptions}
-            />
-          )}
-          <span className="seperator" />
+          <span className="seperator"></span>
+
+          <div className="headerSearchItem">
+            <div
+              id="optionDropDown"
+              className="optDropDown"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div className="optDropDown__mobile">
+                <FaFilter className="headerIcon" />
+                <span>ویژگی ها</span>
+              </div>
+              <div className="optionDropDownItem">
+                <IoMdPeople className="headerIcon" />
+                <span>
+                  {options.adult}
+                  <span className="optionType-Name">بزرگسال</span>
+                </span>
+              </div>
+              <div className="optionDropDownItem">
+                <MdChildCare className="headerIcon" />
+                <span>
+                  {options.children}{" "}
+                  <span className="optionType-Name">کودک</span>
+                </span>
+              </div>
+              <div className="optionDropDownItem">
+                <IoBed className="headerIcon" />
+                <span>
+                  {options.room} <span className="optionType-Name">اتاق</span>
+                </span>
+              </div>
+            </div>
+            {isOpen && (
+              <GuestOptionList
+                setIsOpen={setIsOpen}
+                options={options}
+                handleOptions={handleOptions}
+              />
+            )}
+          </div>
         </div>
+
+        <span className="seperator" />
+
         <div className="headerSearchItem">
           <button className="headerSearchBtn" onClick={() => handleSearch()}>
             <HiSearch className="headerIcon" />
@@ -134,23 +199,26 @@ export default Header;
 
 function GuestOptionList({ options, setIsOpen, handleOptions }) {
   const optionsRef = useRef();
-  useOutSideClick(optionsRef, "optionDropDown", () => setIsOpen(false));
+  useOutSideClick(optionsRef, () => setIsOpen(false));
   return (
     <div className="guestOptions" ref={optionsRef}>
       <OptionItem
         handleOptions={handleOptions}
+        persianTypeName="بزرگسال"
         type="adult"
         options={options}
         minLmit={1}
       />
       <OptionItem
         handleOptions={handleOptions}
+        persianTypeName="کودک"
         type="children"
         options={options}
         minLmit={7}
       />
       <OptionItem
         handleOptions={handleOptions}
+        persianTypeName="اتاق"
         type="room"
         options={options}
         minLmit={6}
@@ -159,10 +227,16 @@ function GuestOptionList({ options, setIsOpen, handleOptions }) {
   );
 }
 
-function OptionItem({ options, type, minLmit, handleOptions }) {
+function OptionItem({
+  options,
+  type,
+  persianTypeName,
+  minLmit,
+  handleOptions,
+}) {
   return (
     <div className="guestOptionItem">
-      <span className="optionText">{type}</span>
+      <span className="optionText">{persianTypeName}</span>
       <div className="optionCounter">
         <button
           className="optionCounterBtn"
@@ -185,24 +259,25 @@ function OptionItem({ options, type, minLmit, handleOptions }) {
 
 function User() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAthenticated, logout } = useAuth();
+  console.log(user, isAthenticated);
+
   const handleLogout = () => {
     logout();
     navigate("/");
   };
-
+  if (!isAthenticated) {
+    return (
+      <NavLink to="/login" className="nevigateContent">
+        <IoMdLogIn className="headerIcon" />
+        <span>ورود</span>
+      </NavLink>
+    );
+  }
   return (
-    <div>
-      {isAuthenticated ? (
-        <div>
-          <strong>{user.name}</strong>
-          <button>
-            &nbsp; <MdLogout onClick={handleLogout} className="logout icon" />
-          </button>
-        </div>
-      ) : (
-        <NavLink to="/login">login</NavLink>
-      )}
+    <div onClick={() => handleLogout()} className="profile">
+      <HiLogout className="headerIcon" />
+      <span>{user.name}</span>
     </div>
   );
 }

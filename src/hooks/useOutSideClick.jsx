@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
 
-export default function useOutSideClick(ref, exeptionId, cb) {
+export default function useOutSideClick(ref, cb) {
   useEffect(() => {
     function handleOutsideClick(event) {
-      if (
-        ref.current &&
-        !ref.current.contains(event.target) &&
-        event.target.id !== exeptionId
-      ) {
+      if (ref.current && !ref.current.contains(event.target)) {
         cb();
       }
     }

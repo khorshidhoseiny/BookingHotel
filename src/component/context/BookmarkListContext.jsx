@@ -79,6 +79,7 @@ function BookmarkProvider({ children }) {
     }
     FetchBookmarks();
   }, []);
+
   async function createBookmark(newBookmark) {
     dispatch({ type: "loading" });
     try {

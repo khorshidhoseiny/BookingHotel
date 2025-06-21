@@ -8,11 +8,14 @@ function Login() {
   const [email, setEmail] = useState("user@gmail.com");
   const [password, setPassword] = useState("1234");
   const { user, isAthenticated, login } = useAuth();
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) login(email, password);
   };
+
+  console.log(isAthenticated);
 
   useEffect(() => {
     if (isAthenticated) navigate("/", { replace: true });

@@ -7,22 +7,47 @@ export default function useGeoLocation() {
   const [error, setError] = useState(null);
 
   function getPosition() {
-    if (!navigator.geolocation) return set;
-
-    setIsLoading(true);
+    if (!navigator.geolocation)
+      return setError("your browser not support geolocation");
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        setIsLoading(true);
         setPosition({
-          lat: pos.coords.latitude,
           lng: pos.coords.longitude,
+          lat: pos.coords.latitude,
         });
         setIsLoading(false);
       },
       (error) => {
-        setError(error.message);
         setIsLoading(false);
+        setError(error.message);
       }
     );
   }
-  return { isLoading, position, getPosition };
+  return { isLoading, position, error, getPosition };
 }
+
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [position, setPosition] = useState({});
+//   const [error, setError] = useState(null);
+
+//   function getPosition() {
+//     if (!navigator.geolocation) return setError;
+
+//     setIsLoading(true);
+//     navigator.geolocation.getCurrentPosition(
+//       (pos) => {
+//         setPosition({
+//           lat: pos.coords.latitude,
+//           lng: pos.coords.longitude,
+//         });
+//         setIsLoading(false);
+//       },
+//       (error) => {
+//         setError(error.message);
+//         setIsLoading(false);
+//       }
+//     );
+//   }
+//   return { isLoading, position, getPosition };
+// }

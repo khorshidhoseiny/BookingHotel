@@ -1,18 +1,17 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const HotelContext = createContext();
-const BASE_URL = "http://localhost:5000/hotels";
+const BASE_URL = "http://localhost:5000/persian-hotels";
 function HotelsProvider({ children }) {
   const [searchParams, setSearchParamshost] = useSearchParams();
   const [currentHotel, setCurrentHotel] = useState(null);
   const [isLoadingCurrLocation, setIsLoadingCurrLocation] = useState(false);
   const destination = searchParams.get("destination");
   const room = JSON.parse(searchParams.get("options"))?.room;
-
   const { data: Hotels, isLoading } = useFetch(
     `${BASE_URL}`,
     `q=${destination || ""}&accommodates_gte=${room || 1}`

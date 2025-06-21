@@ -1,7 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useUrlLocation from "../../hooks/useUrlLocation";
-import axios from "axios";
 import { useBookmark } from "../context/BookmarkListContext";
 import ReactCountryFlag from "react-country-flag";
 
@@ -10,14 +10,14 @@ function AddNewBookmark() {
 
   const navigate = useNavigate();
   const { createBookmark } = useBookmark();
-  const BASE_GEOLOCATION_URL =
-    "https://api.bigdatacloud.net/data/reverse-geocode-client";
+  const BASE_GEOLOCATION_URL = "https://nominatim.openstreetmap.org/reverse";
 
   const [countryName, setCountryName] = useState("");
   const [cityName, setCityName] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [isLoadingGeoLocation, setIsLoadingGeoLocation] = useState(false);
   const [GeoCodingError, setGeoCodingError] = useState(null);
+  console.log(lng, lat);
 
   useEffect(() => {
     if (!lat || !lng) return;
@@ -25,10 +25,9 @@ function AddNewBookmark() {
       try {
         setIsLoadingGeoLocation(true);
         const { data } = await axios.get(
-          `${BASE_GEOLOCATION_URL}?latitude=${lat}&longitude=${lng}`
+          `${BASE_GEOLOCATION_URL}?lat=${lat}&lon=${lng}`
         );
         console.log(data);
-
         if (!data.countryCode)
           throw new Error(
             "this location is not a city ! please click somewhere else"
@@ -63,7 +62,6 @@ function AddNewBookmark() {
   return (
     <div>
       <h2>Add New Bookmark</h2>
-
       <form action="" onSubmit={handleSubmit} className="form">
         <div className="formControl">
           <label htmlFor="cityName">cityName</label>

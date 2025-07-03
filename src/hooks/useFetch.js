@@ -11,6 +11,7 @@ function useFetch(url, query = "") {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`${url}?${query}`);
+        console.log(data.latitude, data.longitude);
         setData(data);
       } catch (err) {
         setData([]);

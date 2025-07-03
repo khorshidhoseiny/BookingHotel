@@ -24,10 +24,10 @@ function Login() {
 
   return (
     <div className="loginContainer">
-      <h2>Login</h2>
+      <h2> ورود به حساب کاربری🧑🏻‍💻</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="formControl">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">ایمیل</label>
           <input
             type="text"
             name="email"
@@ -37,7 +37,7 @@ function Login() {
           />
         </div>
         <div className="formControl">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">رمز عبور</label>
           <input
             type="password"
             name="password"
@@ -47,7 +47,7 @@ function Login() {
           />
         </div>
         <div className="buttons">
-          <button className="btn btn--primary">Login</button>
+          <button className="btn btn--primary">ورود</button>
         </div>
       </form>
     </div>

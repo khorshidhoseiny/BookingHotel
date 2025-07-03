@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { MdLocationOn, MdLogout } from "react-icons/md";
-import { FaBookmark, FaFilter, FaRegBookmark, FaUser } from "react-icons/fa6";
-import { IoIosLogOut, IoLogoUsd, IoMdLogIn, IoMdPeople } from "react-icons/io";
+import { FaBookmark, FaRegBookmark, FaUser } from "react-icons/fa6";
+import { IoLogoUsd, IoMdLogIn } from "react-icons/io";
 import { MdChildCare } from "react-icons/md";
 import {
   IoBed,
@@ -30,6 +30,8 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "./context/AuthProvider";
+import axios from "axios";
+import { control } from "leaflet";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -67,7 +69,6 @@ function Header() {
       };
     });
   };
-
   const handleSearch = () => {
     navigate({
       pathname: "/hotels",
@@ -95,28 +96,31 @@ function Header() {
       </NavLink>
       <div className="headerSearch">
         <div className="headerSearchItem">
-          <MdLocationOn className="headerIcon locationIcon" />
-          <input
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            type="text"
-            id="destination"
-            name="destination"
-            placeholder="کجا میخوای بری ؟"
-            className="headerSearchInput"
-          />
-          <span className="seperator" />
+          <div className="headerSearchInput">
+            <span className="headerSearchInput__header">
+              <MdLocationOn className="headerIcon locationIcon" />
+              نام شهر ، هتل یا منطقه
+            </span>
+            <input
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              type="text"
+              id="destination"
+              name="destination"
+              className="headerSearchInput__body"
+            />
+          </div>
         </div>
 
         <div className="filterSearchOptions">
           <div
             onClick={() => setOpenDate(!openDate)}
-            className="headerSearchItem"
+            className="headerSearchItem dateOption"
             style={{ cursor: "pointer" }}
           >
-            <div className="dateOptionIcon">
+            <div className="dateOption__header ">
               <HiCalendar className="headerIcon dateIcon" />
-              <span>انتخاب تاریخ</span>
+              <span>تاریخ رفت و برگشت</span>
             </div>
             <div className="dateDropDown">
               <span className="dateText">
@@ -139,7 +143,6 @@ function Header() {
               />
             )}
           </div>
-          <span className="seperator"></span>
 
           <div className="headerSearchItem">
             <div
@@ -147,29 +150,28 @@ function Header() {
               className="optDropDown"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <div className="optDropDown__mobile">
-                <FaFilter className="headerIcon" />
-                <span>ویژگی ها</span>
+              <div className="optDropDown__header">
+                <FaUser className="headerIcon" />
+                <span> مسافران و اتاق ها</span>
               </div>
-              <div className="optionDropDownItem">
-                <IoMdPeople className="headerIcon" />
-                <span>
-                  {options.adult}
-                  <span className="optionType-Name">بزرگسال</span>
-                </span>
-              </div>
-              <div className="optionDropDownItem">
-                <MdChildCare className="headerIcon" />
-                <span>
-                  {options.children}{" "}
-                  <span className="optionType-Name">کودک</span>
-                </span>
-              </div>
-              <div className="optionDropDownItem">
-                <IoBed className="headerIcon" />
-                <span>
-                  {options.room} <span className="optionType-Name">اتاق</span>
-                </span>
+              <div className="optionDropDown__body">
+                <div className="optionDropDownItem">
+                  <span>
+                    {options.adult}
+                    <span className="optionType-Name">بزرگسال</span>
+                  </span>
+                </div>
+                <div className="optionDropDownItem">
+                  <span>
+                    {options.children}{" "}
+                    <span className="optionType-Name">کودک</span>
+                  </span>
+                </div>
+                <div className="optionDropDownItem">
+                  <span>
+                    {options.room} <span className="optionType-Name">اتاق</span>
+                  </span>
+                </div>
               </div>
             </div>
             {isOpen && (
@@ -182,10 +184,9 @@ function Header() {
           </div>
         </div>
 
-        <span className="seperator" />
-
-        <div className="headerSearchItem">
+        <div className="headerSearchItem search ">
           <button className="headerSearchBtn" onClick={() => handleSearch()}>
+            <h2>جستجو</h2>
             <HiSearch className="headerIcon" />
           </button>
         </div>

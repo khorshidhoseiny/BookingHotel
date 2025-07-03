@@ -1,9 +1,9 @@
 import { Toaster } from "react-hot-toast";
 import "./App.css";
+import "leaflet/dist/leaflet.css";
 import Header from "./component/Header";
 import LocationList from "./component/LocationList";
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./component/HotelLayout";
 import Hotels from "./component/Hotels/Hotels";
 import HotelsProvider from "./component/context/HotelsProvider";
 import SingleHotel from "./component/SIngleHotel/SingleHotel";
@@ -15,21 +15,19 @@ import AddNewBookmark from "./component/AddNewBookmark/AddNewBookmark";
 import ProtectedRoute from "./component/ProtectedRoute/ProtectedRoute";
 import Login from "./component/Login/Login";
 import AuthProvider from "./component/context/AuthProvider";
-import HotelLayout from "./component/HotelLayout";
+
 function App() {
   return (
     <BookmarkProvider>
       <HotelsProvider>
         <AuthProvider>
           <Toaster />
-          <Header />
           <Routes>
             <Route path="/" element={<LocationList />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/hotels" element={<HotelLayout />}>
-              <Route index element={<Hotels />} />
-              <Route path=":id" element={<SingleHotel />} />
-            </Route>
+            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/hotels/:id" element={<SingleHotel />} />
+
             <Route
               path="/bookmarks"
               element={

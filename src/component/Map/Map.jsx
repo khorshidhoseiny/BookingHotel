@@ -13,7 +13,7 @@ import useGeoLocation from "../../hooks/useGeoLocation";
 import useUrlLocation from "../../hooks/useUrlLocation";
 
 function Map({ markerLocation }) {
-  const [mapCenter, setMapCenter] = useState([31.319, 48.6842]);
+  const [mapCenter, setMapCenter] = useState([35.6892, 51.389]);
   const [lat, lng] = useUrlLocation();
   const {
     isLoading: isLoadingPosition,
@@ -29,7 +29,6 @@ function Map({ markerLocation }) {
     if (GeoLocationPosition?.lat && GeoLocationPosition?.lng)
       setMapCenter([GeoLocationPosition.lat, GeoLocationPosition.lng]);
   }, [GeoLocationPosition]);
-
   return (
     <div className="mapContainer">
       <MapContainer
@@ -43,15 +42,24 @@ function Map({ markerLocation }) {
         </button>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ChangeCenter position={mapCenter} />
         <DetectClick />
-        {markerLocation.map((item) => (
-          <Marker key={item.id} position={[item.latitude, item.longitude]}>
-            <Popup>{item.host_location}</Popup>
+        {Array.isArray(markerLocation) ? (
+          markerLocation.map((item) => (
+            <Marker key={item.id} position={[item.latitude, item.longitude]}>
+              <Popup>{item.host_location}</Popup>
+            </Marker>
+          ))
+        ) : (
+          <Marker
+            key={markerLocation.id}
+            position={[markerLocation.latitude, markerLocation.longitude]}
+          >
+            <Popup>{markerLocation.host_location}</Popup>
           </Marker>
-        ))}
+        )}
       </MapContainer>
     </div>
   );

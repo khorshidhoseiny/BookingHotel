@@ -18,7 +18,7 @@ function Bookmark() {
 
   return (
     <div>
-      <h2>Bookmark List</h2>
+      <h2>لیست منتخب ها</h2>
       <div className="bookmarkList">
         {bookmarks.map((item) => {
           return (
@@ -31,14 +31,18 @@ function Bookmark() {
                   item.id === currentBookmark?.id ? "current-bookmark" : ""
                 }`}
               >
-                <div>
-                  <ReactCountryFlag svg countryCode={item.countryCode} />
-                  &nbsp; <strong>{item.cityName}</strong> &nbsp;
-                  <span>{item.country}</span>
+                <div className="bookmarkItem__details">
+                  <div>
+                    <h2>{item.cityName}</h2>
+                    <button onClick={(e) => handleDelete(e, item.id)}>
+                      <HiTrash className="trash icon" />
+                    </button>
+                  </div>
+                  <div>
+                    <ReactCountryFlag svg countryCode={item.countryCode} />
+                    <span>{item.country}</span>
+                  </div>
                 </div>
-                <button onClick={(e) => handleDelete(e, item.id)}>
-                  <HiTrash className="trash" />
-                </button>
               </div>
             </Link>
           );

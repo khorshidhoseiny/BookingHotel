@@ -15,9 +15,9 @@ function SingleBookmark() {
 
   if (isLoading || !currentBookmark) return <Loader />;
   return (
-    <div>
+    <div className="singleBookmarkItem">
       <button className="btn btn--back" onClick={() => navigate(-1)}>
-        &larr; Back
+        &rarr; بازگشت
       </button>
       <div className="bookmarkItem">
         <ReactCountryFlag svg countryCode={currentBookmark.countryCode} />

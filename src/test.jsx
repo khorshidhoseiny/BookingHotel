@@ -1,7 +1,6 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import AppLayout from "./component/AppLayout.jsx";
 import HeaderTest from "./component/HeaderTest.jsx";

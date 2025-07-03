@@ -7,7 +7,6 @@
   --text-400: #94a3b8;
   --text-500: #64748b;
   --text-100: #f1f5f9;
-
   --text-300: #d1d5db;
   --white: #fff;
   --primary-700: #002c8a;
@@ -53,6 +52,7 @@
 }
 
 * {
+  font-family: "Vazir", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -60,7 +60,6 @@
   outline: none;
 }
 html {
-  font-family: "Vazir", sans-serif;
   font-size: 63.2%;
 }
 body {
@@ -83,6 +82,9 @@ button:disabled {
 input::placeholder {
   font-family: "Vazir", sans-serif;
   font-size: small;
+}
+input {
+  font-family: "Vazir", sans-serif;
 }
 
 a {

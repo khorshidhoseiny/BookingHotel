@@ -391,24 +391,12 @@
       "interaction": null,
       "house_rules": null,
       "thumbnail_url": "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/main.jpg?width=720",
-      "medium_url": "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/main.jpg?width=720",
-      "picture_url": {
-        "thumbnail": true,
-        "filename": "415cd752_original.jpg",
-        "format": "JPEG",
-        "width": 480,
-        "mimetype": "image/jpeg",
-        "id": "1333549eac1ff1f91b4443e0dc910c3a",
-        "last_synchronized": "2020-08-01T01:19:25.582402",
-        "color_summary": [
-          "rgba(101, 94, 87, 1.00)",
-          "rgba(88, 86, 76, 1.00)",
-          "rgba(54, 54, 64, 1.00)"
-        ],
-        "height": 480,
-        "url": "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/main.jpg?width=720"
-      },
-      "xl_picture_url": "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/main.jpg?width=720",
+      "imageList":[
+        "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/5.jpg?width=750",
+        "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/6.jpg?width=750",
+        "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/6.jpg?width=750",
+        "https://cdn-a-hid.cdnfl2.ir/upload/hotelimagesdomestic/3082/8.jpg?width=750"
+      ],
       "host_id": "1195000",
       "host_url": "https://www.airbnb.com/users/show/1195000",
       "host_name": "Linda",

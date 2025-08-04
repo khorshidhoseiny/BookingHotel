@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "json-server server/db.json --host 0.0.0.0 --port 5000 --delay 500",
+    "server": "json-server server/db.json  --port 5000 --delay 500",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -37,3 +37,4 @@
     "vite": "^4.4.5"
   }
 }
+

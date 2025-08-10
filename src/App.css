@@ -21,6 +21,7 @@
 .headerSearch {
   display: flex;
   padding: 1rem;
+  overflow: scroll;
   white-space: nowrap;
   width: 100%;
   max-width: 900px;
@@ -38,6 +39,7 @@
   border: var(--text-400) 1px solid;
   padding: 1rem;
   border-radius: 12px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   min-width: 100px;
@@ -226,13 +228,20 @@
   font-size: x-small;
   margin-left: 1rem;
   color: var(--text-700);
+  display: flex;
+  flex-direction: column;
   font-family: "Vazir", sans-serif;
 }
 
 .dateText {
   font-weight: 500;
+
   white-space: nowrap;
   color: var(--primary-600);
+}
+.dateText.dash {
+  margin: auto 0;
+  display: none;
 }
 .headerSearchInput__body {
   border: none;
@@ -378,6 +387,10 @@
   color: #333;
 }
 @media screen and (min-width: 768px) {
+  .dateText.dash {
+    display: inline;
+  }
+
   .headerSearchItem.locationIcon {
     display: block;
   }

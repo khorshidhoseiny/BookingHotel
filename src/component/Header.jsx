@@ -122,12 +122,12 @@ function Header() {
               <HiCalendar className="headerIcon dateIcon" />
               <span>تاریخ رفت و برگشت</span>
             </div>
-            <div className="dateDropDown">
+            <div className="dateDropDown ">
               <span className="dateText">
                 {date[0].startDate.toLocaleDateString("fa-IR", optionDate)}
               </span>
-              <span className="dateText" style={{ margin: "0 0.5rem" }}>
-                —
+              <span className="dateText " style={{ margin: "0 0.5rem" }}>
+                تا
               </span>
               <span className="dateText">
                 {date[0].endDate.toLocaleDateString("fa-IR", optionDate)}

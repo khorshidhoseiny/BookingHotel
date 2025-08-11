@@ -5,7 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const HotelContext = createContext();
-const BASE_URL = "https://bookinghotel-2-h9t8.onrender.com/persian-hotels";
+const BASE_URL = "https://bookinghotel-3.onrender.com/persian-hotels";
 function HotelsProvider({ children }) {
   const [searchParams, setSearchParamshost] = useSearchParams();
   const [currentHotel, setCurrentHotel] = useState(null);

@@ -8,7 +8,7 @@ import Header from "./Header";
 
 function LocationList() {
   const { data, isLoading } = useFetch(
-    "https://bookinghotel-2-h9t8.onrender.com/persian-hotels",
+    "https://bookinghotel-3.onrender.com/",
     ""
   );
 

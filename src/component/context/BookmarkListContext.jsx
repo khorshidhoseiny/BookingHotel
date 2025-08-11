@@ -49,7 +49,7 @@ function bookmarkReducer(state, action) {
 }
 
 const BookmarkContext = createContext();
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://bookinghotel-2-h9t8.onrender.com";
 
 function BookmarkProvider({ children }) {
   const [{ bookmarks, isLoading, currentBookmark }, dispatch] = useReducer(

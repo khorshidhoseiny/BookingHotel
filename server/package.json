@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // {
 //   "name": "json-backend",
 //   "version": "1.0.0",
@@ -8,3 +9,15 @@
 //     "json-server": "^0.17.3"
 //   }
 // }
+=======
+{
+  "name": "json-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server db.json --host 0.0.0.0 --port $PORT --delay 500"
+  },
+  "dependencies": {
+    "json-server": "^0.17.3"
+  }
+}
+>>>>>>> 73166145f9ed0bee652f427517d1cda97edc59ec
